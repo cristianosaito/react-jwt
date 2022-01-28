@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, NavLink } from 'react-router-dom'
+
 import './App.css';
+import RoutesList from './RoutesList';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <div>
+          <div className="header">
+              <nav>
+                <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/">Home</NavLink>
+                <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/login">Login</NavLink><small>(Access without token only)</small>
+                <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/dashboard">Dashboard</NavLink><small>(Access with token only)</small>
+              </nav>
+          </div>
+          <div className="content">
+            <RoutesList/>
+          </div>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
